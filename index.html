@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquarium Gids — Superfish Home 85</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --water-deep: #0B2624;
+    --water-mid: #123A35;
+    --water-card: #16443E;
+    --water-line: #26564E;
+    --foam: #EDE7D8;
+    --foam-dim: #A9BDB7;
+    --shrimp: #C1442E;
+    --shrimp-soft: #D96A50;
+    --tetra: #52B9C6;
+    --driftwood: #C79A5D;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--water-deep);
+    color:var(--foam);
+    font-family:'Karla', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0 0 0.4em 0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.01em;
+  }
+  a{color:var(--tetra);}
+  :focus-visible{outline:2px solid var(--tetra); outline-offset:3px;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:90px 24px 70px;
+    background:
+      radial-gradient(ellipse 700px 400px at 20% -10%, rgba(82,185,198,0.16), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 100% 0%, rgba(193,68,46,0.12), transparent 55%),
+      linear-gradient(180deg, #0B2624 0%, #0E2E2A 100%);
+    border-bottom:1px solid var(--water-line);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(180deg, transparent 0 38px, rgba(237,231,216,0.025) 38px 39px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--tetra);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    margin-bottom:18px;
+    display:block;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 6vw, 3.2rem);
+    max-width:11ch;
+    color:var(--foam);
+  }
+  .hero p{
+    color:var(--foam-dim);
+    font-size:1.05rem;
+    max-width:46ch;
+    margin-top:14px;
+  }
+  .stat-row{
+    display:flex; gap:12px; flex-wrap:wrap;
+    margin-top:34px;
+  }
+  .stat{
+    background:rgba(237,231,216,0.05);
+    border:1px solid var(--water-line);
+    border-radius:10px;
+    padding:12px 16px;
+    min-width:110px;
+  }
+  .stat .num{font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600; color:var(--foam);}
+  .stat .label{font-size:0.72rem; color:var(--foam-dim); text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* SECTIONS */
+  section{padding:56px 24px; border-bottom:1px solid var(--water-line);}
+  section .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--driftwood);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-bottom:10px;
+  }
+  section h2{font-size:1.7rem; margin-bottom:8px;}
+  section > .wrap > p.intro{color:var(--foam-dim); max-width:56ch; margin-bottom:32px;}
+
+  .fade-in{
+    opacity:0; transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible{opacity:1; transform:translateY(0);}
+
+  /* SPEC GRID */
+  .spec-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .spec-card{
+    background:var(--water-card);
+    border:1px solid var(--water-line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .spec-card .label{font-size:0.72rem; color:var(--foam-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;}
+  .spec-card .value{font-family:'IBM Plex Mono', monospace; font-size:1rem; color:var(--foam);}
+  .note-box{
+    margin-top:16px;
+    border-left:3px solid var(--shrimp);
+    background:rgba(193,68,46,0.08);
+    padding:14px 16px;
+    border-radius:0 8px 8px 0;
+    font-size:0.94rem;
+    color:var(--foam);
+  }
+
+  /* CHECKLIST */
+  .checklist-group{margin-bottom:26px;}
+  .checklist-group h3{font-size:1rem; color:var(--tetra); font-family:'Karla',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;}
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .checklist li{
+    display:flex; gap:10px; align-items:flex-start;
+    background:var(--water-card);
+    border:1px solid var(--water-line);
+    border-radius:10px;
+    padding:11px 14px;
+    font-size:0.95rem;
+  }
+  .checklist li::before{
+    content:"";
+    flex:0 0 16px; height:16px; margin-top:3px;
+    border-radius:4px;
+    border:1.5px solid var(--driftwood);
+  }
+
+  /* TIMELINE — signature element */
+  .timeline{position:relative; padding-left:34px; margin-top:20px;}
+  .timeline::before{
+    content:"";
+    position:absolute; left:9px; top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(180deg, var(--tetra), var(--shrimp) 60%, var(--driftwood));
+    opacity:0.5;
+  }
+  .t-step{position:relative; padding-bottom:34px;}
+  .t-step:last-child{padding-bottom:0;}
+  .t-step::before{
+    content:"";
+    position:absolute; left:-34px; top:2px;
+    width:18px; height:18px; border-radius:50%;
+    background:var(--water-deep);
+    border:2px solid var(--tetra);
+  }
+  .t-step.shrimp::before{border-color:var(--shrimp);}
+  .t-step.wood::before{border-color:var(--driftwood);}
+  .t-step .when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--foam-dim);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:4px;
+  }
+  .t-step h3{font-size:1.15rem; margin-bottom:6px;}
+  .t-step p{color:var(--foam-dim); margin:0; font-size:0.95rem;}
+
+  /* LIVESTOCK CARDS */
+  .stock-grid{display:flex; flex-direction:column; gap:14px;}
+  .stock-card{
+    background:var(--water-card);
+    border:1px solid var(--water-line);
+    border-radius:var(--radius);
+    padding:20px;
+    border-top:3px solid var(--tetra);
+  }
+  .stock-card.shrimp-card{border-top-color:var(--shrimp);}
+  .stock-card.guppy-card{border-top-color:var(--driftwood);}
+  .stock-card h3{font-size:1.2rem; margin-bottom:6px;}
+  .stock-card .qty{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--water-deep);
+    background:var(--foam);
+    padding:2px 9px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+  .stock-card p{margin:0; color:var(--foam-dim); font-size:0.94rem;}
+
+  /* PLANT LIST */
+  .plant-list{display:flex; flex-direction:column; gap:10px;}
+  .plant-item{
+    display:grid; grid-template-columns:1fr;
+    gap:2px;
+    background:var(--water-card);
+    border:1px solid var(--water-line);
+    border-radius:10px;
+    padding:14px 16px;
+  }
+  .plant-item .name{font-weight:700; color:var(--foam);}
+  .plant-item .desc{color:var(--foam-dim); font-size:0.93rem;}
+
+  /* FOOTER */
+  footer{padding:40px 24px 60px; text-align:center;}
+  footer .mono{color:var(--foam-dim); font-size:0.8rem;}
+  footer .heart{color:var(--shrimp-soft);}
+
+  @media (max-width:520px){
+    .spec-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .fade-in{opacity:1; transform:none; transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Aquarium journaal · Bas</span>
+    <h1>80 liter gezelschapsbak</h1>
+    <p>Superfish Home 85, ingericht voor guppy's, neontetra's en vuurgarnalen. Deze pagina verzamelt alle afspraken en beslissingen uit de gesprekken met Claude.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">80L</div><div class="label">Netto volume</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Soorten</div></div>
+      <div class="stat"><div class="num">1–2</div><div class="label">Weken cyclen*</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="specs">
+  <div class="wrap fade-in">
+    <div class="kicker">01 — Het aquarium</div>
+    <h2>Superfish Home 85</h2>
+    <p class="intro">Plug-and-play aquarium, geschikt voor aquascaping en nano-bewoners.</p>
+    <div class="spec-grid">
+      <div class="spec-card"><div class="label">Afmetingen</div><div class="value">65 × 31 × 53 cm</div></div>
+      <div class="spec-card"><div class="label">Volume</div><div class="value">≈ 80 liter</div></div>
+      <div class="spec-card"><div class="label">Filter</div><div class="value">Aqua-Flow 300 (ingebouwd)</div></div>
+      <div class="spec-card"><div class="label">Verlichting</div><div class="value">LED Sunrise, wit/blauw</div></div>
+    </div>
+    <div class="note-box">Verwarming zit <strong>niet</strong> standaard bij het pakket — apart aanschaffen, richt op 24–25 °C (50–100W, verstelbaar).</div>
+  </div>
+</section>
+
+<section id="equipment">
+  <div class="wrap fade-in">
+    <div class="kicker">02 — Benodigdheden</div>
+    <h2>Wat je nog moet kopen</h2>
+
+    <div class="checklist-group">
+      <h3>Techniek</h3>
+      <ul class="checklist">
+        <li>Verwarmingselement, verstelbaar, ~24–25 °C</li>
+        <li>Sponge pre-filter over de filterinlaat (garnalenveilig)</li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <h3>Inrichting</h3>
+      <ul class="checklist">
+        <li>Fijn bodemgrind of aquasoil</li>
+        <li>Javamos, javavaren, anubias, hoornblad, drijfplanten</li>
+        <li>Mopani- of moerashout</li>
+        <li>Amandelblad (Catappa)</li>
+        <li>Schuilhutjes / 3D-geprinte shrimp condo's (PETG)</li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <h3>Water & onderhoud</h3>
+      <ul class="checklist">
+        <li>Waterverbeteraar / dechlorinator (koper-vrij)</li>
+        <li>Vloeibare testkit: ammonia, nitriet, nitraat, pH</li>
+        <li>Bacteriestarter (Dr. Tim's One &amp; Only / Tetra SafeStart)</li>
+        <li>Bodemzuiger, vissennet, eigen emmer</li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <h3>Voeding</h3>
+      <ul class="checklist">
+        <li>Vlokken/korrels voor guppy en neontetra</li>
+        <li>Apart garnalenvoer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="opbouw">
+  <div class="wrap fade-in">
+    <div class="kicker">03 — Opbouw &amp; volgorde</div>
+    <h2>Van lege bak tot volle bezetting</h2>
+    <p class="intro">Garnalen gaan vóór de vissen erin — zo krijgt de kolonie de kans zich te vestigen voordat guppy's en tetra's de jongen opeten.</p>
+
+    <div class="timeline">
+      <div class="t-step">
+        <div class="when">Week 0</div>
+        <h3>Inrichten &amp; cyclen starten</h3>
+        <p>Grind, hout en planten plaatsen, water + waterverbeteraar toevoegen, filter/verwarming/licht aan. Met bacteriestarter duurt het cyclen meestal <strong>1–2 weken</strong> i.p.v. 4–6 weken — test toch zelf door tot ammonia én nitriet meerdere dagen op 0 staan.</p>
+      </div>
+      <div class="t-step wood">
+        <div class="when">Na het cyclen</div>
+        <h3>Laten rijpen</h3>
+        <p>Enkele weken extra: planten wortelen, er bouwt zich biofilm/algen op — belangrijk grazevoer voor de garnalen.</p>
+      </div>
+      <div class="t-step shrimp">
+        <div class="when">Instap 1</div>
+        <h3>Vuurgarnalen</h3>
+        <p>10–15 stuks. Lage bioload, mogen als eerste — zo krijgen de eerste worpen een kans om op te groeien zonder vissen die ze opeten.</p>
+      </div>
+      <div class="t-step">
+        <div class="when">Instap 2 (weken later)</div>
+        <h3>Neontetra's + guppy's</h3>
+        <p>Neontetra's als hele school tegelijk toevoegen (schoolvis). Guppy's erna of gelijktijdig.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bewoners">
+  <div class="wrap fade-in">
+    <div class="kicker">04 — Bewoners</div>
+    <h2>Bezetting</h2>
+    <div class="stock-grid">
+      <div class="stock-card guppy-card">
+        <div class="qty">6–8 stuks</div>
+        <h3>Guppy</h3>
+        <p>Alleen mannetjes = geen nakomelingen, blijft populatie stabiel. Met vrouwtjes erbij: reken op continue voortplanting (sperma wordt tot 6 maanden intern opgeslagen) en overweeg periodiek uitdunnen.</p>
+      </div>
+      <div class="stock-card">
+        <div class="qty">8–10 stuks</div>
+        <h3>Neontetra</h3>
+        <p>Echte schoolvis, minimaal 8 stuks. Fokt zelden spontaan thuis — populatie blijft vanzelf stabiel.</p>
+      </div>
+      <div class="stock-card shrimp-card">
+        <div class="qty">10–15 stuks (start)</div>
+        <h3>Vuurgarnaal (Neocaridina)</h3>
+        <p>Zeer lage bioload, plant zich vanzelf voort. Gevoelig voor koper en voor ammonia/nitriet — pas toevoegen na volledig cyclen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planten">
+  <div class="wrap fade-in">
+    <div class="kicker">05 — Planten &amp; decor voor garnalenjongen</div>
+    <h2>Dekking en grazeoppervlak</h2>
+    <div class="plant-list">
+      <div class="plant-item"><span class="name">Javamos</span><span class="desc">Nummer 1 — dichte schuilplek + biofilm om te grazen.</span></div>
+      <div class="plant-item"><span class="name">Javavaren</span><span class="desc">Op hout/steen bevestigen, niet in het grind.</span></div>
+      <div class="plant-item"><span class="name">Anubias</span><span class="desc">Langzame groei, weinig onderhoud.</span></div>
+      <div class="plant-item"><span class="name">Drijfplanten</span><span class="desc">Kroos, kikkerbeet, Salvinia — schuilgordijn voor pasgeboren jongen.</span></div>
+      <div class="plant-item"><span class="name">Hoornblad</span><span class="desc">Snelgroeiend, geen substraat nodig, trekt nitraat weg.</span></div>
+      <div class="plant-item"><span class="name">Mopani-/moeraswaardhout</span><span class="desc">Grazeoppervlak + tannines; kan pH iets verlagen.</span></div>
+      <div class="plant-item"><span class="name">Amandelblad (Catappa)</span><span class="desc">Grazevoer, milde antibacteriële werking.</span></div>
+    </div>
+    <div class="note-box">Vermijd decoratie met koper of metalen coating. Hoe dichter begroeid, hoe hoger de overlevingskans van garnalenjongen zodra de vissen erbij komen.</div>
+  </div>
+</section>
+
+<section id="bescherming">
+  <div class="wrap fade-in">
+    <div class="kicker">06 — Garnalenjongen beschermen</div>
+    <h2>Tegen de filter én tegen de vissen</h2>
+    <div class="checklist-group">
+      <h3>Filterinlaat (belangrijkste)</h3>
+      <ul class="checklist">
+        <li>Sponge pre-filter over de inlaat van de Aqua-Flow 300 — voorkomt dat jonge garnalen naar binnen gezogen worden</li>
+      </ul>
+    </div>
+    <div class="checklist-group">
+      <h3>Schuilplekken tegen guppy's/tetra's</h3>
+      <ul class="checklist">
+        <li>3D-geprinte "shrimp condo's"/tubes — gratis ontwerpen op Printables/Thingiverse</li>
+        <li>Print in <strong>PETG</strong> (aquariumveilig, ideaal met je gedroogde spoel), niet in PLA</li>
+        <li>Zorg voor gladde randen na printen — garnalen zijn kwetsbaar tijdens vervellen</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="mono">Laatst bijgewerkt: 16 augustus 2026 · wordt aangevuld tijdens gesprekken met Claude <span class="heart">♥</span></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
