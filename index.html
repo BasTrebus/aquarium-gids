@@ -47,6 +47,23 @@
 
   .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
 
+  /* NAV */
+  .site-nav{background:var(--water-mid); border-bottom:1px solid var(--water-line);}
+  .nav-inner{display:flex; gap:24px; padding:14px 24px;}
+  .nav-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--foam-dim);
+    text-decoration:none;
+    padding-bottom:2px;
+    border-bottom:2px solid transparent;
+  }
+  .nav-link:hover{color:var(--foam);}
+  .nav-link.active{color:var(--tetra); border-bottom-color:var(--tetra);}
+  .hero--compact{padding:56px 24px 40px;}
+
   /* HERO */
   .hero{
     position:relative;
@@ -241,6 +258,13 @@
 </head>
 <body>
 
+<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-link active">Aquarium gids</a>
+    <a href="onderhoud.html" class="nav-link">Wekelijks onderhoud</a>
+  </div>
+</nav>
+
 <div class="hero">
   <div class="wrap">
     <span class="eyebrow">Aquarium journaal · Bas</span>
@@ -422,59 +446,6 @@
         <li>Zorg voor gladde randen na printen — garnalen zijn kwetsbaar tijdens vervellen</li>
       </ul>
     </div>
-  </div>
-</section>
-
-<section id="onderhoud">
-  <div class="wrap fade-in">
-    <div class="kicker">08 — Wekelijks onderhoud</div>
-    <h2>Het vaste ritme</h2>
-    <p class="intro">Alles wat elke week terugkomt, op volgorde — de details staan bij de eerdere secties, dit is de samenvatting om gewoon af te lopen.</p>
-
-    <div class="checklist-group">
-      <h3>Waterwissel (20-30%)</h3>
-      <ul class="checklist">
-        <li>Temperatuur binnen 2°C van de bak — vooral koud kraanwater, met mate warm bijmengen (niet te veel boilerwater i.v.m. koperrisico)</li>
-        <li>Koper-bindende conditioner gebruiken, niet enkel een chloor-only variant</li>
-        <li>Bodemzuiger met gaas/kousje over de opening — spot-clean vervuilde hoeken, niet stelselmatig de mos-/houtzones</li>
-      </ul>
-    </div>
-
-    <div class="checklist-group">
-      <h3>Filter</h3>
-      <ul class="checklist">
-        <li>Schuim spoelen in weggehaald aquariumwater indien nodig — niet blind maandelijks de hele cartridge vervangen</li>
-        <li>Cartridge pas vervangen bij zichtbaar verminderde doorstroming (richting eens per paar maanden, niet maandelijks)</li>
-      </ul>
-    </div>
-
-    <div class="checklist-group">
-      <h3>Voeding</h3>
-      <ul class="checklist">
-        <li>Visvoer: klein, fijngekruimeld beetje 1x/dag, in 2-3 minuten op</li>
-        <li>Garnalenvoer/geblancheerde groente: apart, 2-3x/week, bij het hout/mos i.p.v. open water</li>
-        <li>Amandelblad aanvullen zodra het vorige stuk goed is afgebroken</li>
-      </ul>
-    </div>
-
-    <div class="checklist-group">
-      <h3>Planten &amp; algen</h3>
-      <ul class="checklist">
-        <li>Salvinia-dekking rond 40-60% houden — overtollige plantjes eerst uitspoelen boven de bak (fry-safe) voor je ze weggooit</li>
-        <li>Zichtbare draadalgen handmatig verwijderen; bij aanhoudende groei licht/duur tijdelijk terugschroeven</li>
-      </ul>
-    </div>
-
-    <div class="checklist-group">
-      <h3>Bewoners observeren</h3>
-      <ul class="checklist">
-        <li>Vellen laten liggen (mineralen, wordt opgegeten) — alleen weghalen bij grote overtollige hoeveelheden</li>
-        <li>Vrouwtjes checken op zadel/zichtbare eitjes (zaklamp, van opzij kijken)</li>
-        <li>Algemene activiteit: actief grazen/zwemmen is goed, lusteloosheid of wegkruipen is een signaal om verder te controleren</li>
-      </ul>
-    </div>
-
-    <div class="note-box">Niet wekelijks, maar goed om te onthouden: waterwaarden test je vooral intensief in de eerste maanden — zodra alles stabiel blijkt, kan dit afgebouwd worden naar incidentele controle. Chollahout/mopanihout hoeft pas vervangen te worden zodra het structureel te ver is afgebroken, vaak pas na maanden tot jaren.</div>
   </div>
 </section>
 
